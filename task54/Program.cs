@@ -16,11 +16,11 @@ int n = Convert.ToInt32(Console.ReadLine());
 
 if (m == 0 || n == 0)
 {
-    Console.WriteLine("Невернозаданны параметры матрицы, попробуйте снова");
+    Console.WriteLine("Неверно заданны параметры матрицы, попробуйте снова");
     return;
 }
 int[,] matrix = new int[m, n];
-int[,] CreateMatrixRndDouble(int m, int n)
+int[,] CreateMatrixRndInt(int m, int n)
 {
 
     Random rnd = new Random();
@@ -51,7 +51,7 @@ void PrintMatrix(int[,] matrix)
 }
 
 Console.WriteLine($"Двумерный массив m x n: ");
-int[,] array2d = CreateMatrixRndDouble(m, n);
+int[,] array2d = CreateMatrixRndInt(m, n);
 PrintMatrix(array2d);
 
 Console.WriteLine();
@@ -59,15 +59,19 @@ for (int i = 0; i < matrix.GetLength(0); i++)
 {
     for (int j = 0; j < matrix.GetLength(1) - 1; j++)
     {
-        if (matrix[i, j] < matrix[i, j + 1])
+        for (int k = 0; k < matrix.GetLength(1) - 1; k++)
         {
-            int temp = 0;
-            temp = matrix[i, j];
-            matrix[i, j] = matrix[i, j + 1];
-            matrix[i, j + 1] = temp;
-        }
+            if (matrix[i, k] < matrix[i, k + 1])
+            {
+                int temp = 0;
+                temp = matrix[i, k];
+                matrix[i, k] = matrix[i, k + 1];
+                matrix[i, k + 1] = temp;
+            }
 
+        }
     }
 }
-Console.WriteLine($"Отсортированный массив имеет вид: ");
-PrintMatrix(matrix);
+    Console.WriteLine($"Отсортированный массив имеет вид: ");
+    PrintMatrix(matrix);
+
