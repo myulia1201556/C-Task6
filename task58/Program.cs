@@ -8,6 +8,8 @@
 // 18 20
 // 15 18
 
+
+
 Console.WriteLine("Введите число строк r:");
 int r = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите число столбцов c:");
