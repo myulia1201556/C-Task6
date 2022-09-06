@@ -8,10 +8,10 @@
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
-int rasm1 = InputInt("Введите размерность 1: ");
-int rasm2 = InputInt("Введите размерность 2: ");
-int rasm3 = InputInt("Введите размерность 3: ");
-int countNums = 89;
+int rasm1 = InputInt("Введите размер 1: ");
+int rasm2 = InputInt("Введите размер 2: ");
+int rasm3 = InputInt("Введите размер 3: ");
+
 
 if (rasm1 * rasm2 * rasm3 > countNums)
 {

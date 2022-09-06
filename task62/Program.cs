@@ -6,88 +6,52 @@
 // 11 16 15 06
 // 10 09 08 07
 
-// void Main(string[] args)
-// {
-//     int N = 3, M = 3;
-//     var a = CreateSnakeArrayVsClock(N, M);
+Console.WriteLine("Введите число строк m:");
+int m = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Введите число столбцов n:");
+int n = Convert.ToInt32(Console.ReadLine());
 
-//     for (int i = 0; i < N; i++)
-//     {
-//         for (int j = 0; j < M; j++)
-//         {
-//             Console.Write(a[i, j] + " ");
-//         }
-//         Console.WriteLine();
-//     }
+if (m == 0 || n == 0)
+{
+    Console.WriteLine("Неверно заданны параметры матрицы, попробуйте снова");
+    return;
+}
+
+int[,] matrix = new int[m, n];
+
+int i = 0; 
+int j = 0; 
+int temp = 1; 
+
+while (temp <= matrix.GetLength(0) * matrix.GetLength(1))
+{
+    matrix[i, j] = temp;
+    temp++;
+    if (i <= j + 1 && i + j < matrix.GetLength(1) - 1)
+    j++;
+  else if (i < j && i + j >= matrix.GetLength(0) - 1)
+    i++;
+  else if (i >= j && i + j > matrix.GetLength(1) - 1)
+    j--;
+  else
+    i--;
+}
+
+PrintArray(matrix);
+
+void PrintArray (int[,] arr)
+{
+   for (int i = 0; i < arr.GetLength(0); i++)
+  {
+    for (int j = 0; j < arr.GetLength(1); j++)
+    {
+      if (arr[i,j] / 10 <= 0)
+      Console.Write($" {arr[i,j]} ");
+
+      else Console.Write($"{arr[i,j]} ");
+    }
+    Console.WriteLine();
+  }
+} 
 
 
-//     Console.ReadKey();
-// }
-
-// int[,] CreateSnakeArrayVsClock(int n, int m)
-// {
-//     var arr = CreateSnakeArray(n, m);
-//     for (int i = 0; i < m; i++)
-//     {
-//         for (int j = 0; j < n / 2; j++)
-//         {
-//             var tmp = arr[i, j];
-//             arr[i, j] = arr[i, m - j - 1];
-//             arr[i, m - j - 1] = tmp;
-//         }
-//     }
-//     return arr;
-// }
-
-// int[,] CreateSnakeArray(int n, int m)
-// {
-//     int[,] A = new int[n, m];
-//     int row = 0, col = 0, dx = 1, dy = 0, dirChanges = 0, gran = m;
-
-//     for (int i = 0; i < A.Length; i++)
-//     {
-//         A[col, row] = i + 1;
-//         if (--gran == 0)
-//         {
-//             gran = m * (dirChanges % 2) + n * ((dirChanges + 1) % 2) - (dirChanges / 2 - 1) - 2;
-//             int temp = dx;
-//             dx = -dy;
-//             dy = temp;
-//             dirChanges++;
-//         }
-//         col += dx;
-//         row += dy;
-//     }
-//     return A;
-// }
-    
-int N = 4, M = 4;
-            int[,] A = new int[N, M];
- 
-            int row = 0, col = 0, dx = 1, dy = 0, dirChanges = 0, gran = M;
- 
-            for (int i = 0; i < A.Length; i++)
-            {
-                A[col, row] = i + 1;
-                if (--gran == 0)
-                {
-                    gran = M * (dirChanges % 2) + N * ((dirChanges + 1) % 2) - (dirChanges / 2 - 1) - 2;
-                    int temp = dx;
-                    dx = -dy;
-                    dy = temp;
-                    dirChanges++;
-                }
-                col += dx;
-                row += dy;
-            }
- 
-            for (int i = 0; i < N; i++)
-            {
-                for (int j = 0; j < M; j++)
-                {
-                    Console.Write(A[i, j] + " ");
-                }
-                Console.WriteLine();
-            }
- 
-            Console.ReadKey();
